@@ -431,15 +431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45510800cfdbf3e4294cb986c09aa442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  _pathAsset: {fileID: 4900000, guid: 0745f1bb4fdd30645a9e3659c7c545e7, type: 3}
+  pathAsset: {fileID: 4900000, guid: 0745f1bb4fdd30645a9e3659c7c545e7, type: 3}
   _pathPoints: []
   _slider: {fileID: 653848854}
   _moveSpeed: 1
   _trailRenderer: {fileID: 945039085}
-  _isMove: 0
-  _pointNumber: 0
-  _clickCounter: 0
 --- !u!135 &599667342
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -624,15 +620,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45510800cfdbf3e4294cb986c09aa442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  _pathAsset: {fileID: 4900000, guid: 624a60f10d89d4e40bf11a2aa8fd52b5, type: 3}
+  pathAsset: {fileID: 4900000, guid: 624a60f10d89d4e40bf11a2aa8fd52b5, type: 3}
   _pathPoints: []
   _slider: {fileID: 653848854}
   _moveSpeed: 1
   _trailRenderer: {fileID: 43884345}
-  _isMove: 0
-  _pointNumber: 0
-  _clickCounter: 0
 --- !u!135 &643575929
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1240,15 +1232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45510800cfdbf3e4294cb986c09aa442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  _pathAsset: {fileID: 4900000, guid: 7ce9b2ce5832f4b4ea6c7209823b9964, type: 3}
+  pathAsset: {fileID: 4900000, guid: 7ce9b2ce5832f4b4ea6c7209823b9964, type: 3}
   _pathPoints: []
   _slider: {fileID: 653848854}
   _moveSpeed: 1
   _trailRenderer: {fileID: 1213599832}
-  _isMove: 0
-  _pointNumber: 0
-  _clickCounter: 0
 --- !u!135 &1016820885
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2101,17 +2089,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e902bb5fb9cb34aa19da988849e4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   _balls:
   - {fileID: 1905319788}
   - {fileID: 599667345}
   - {fileID: 643575932}
   - {fileID: 1016820888}
-  _target: {fileID: 1905319788}
   _moveSpeed: 10
   _turnSpeed: 10
-  _targetNumber: 0
-  _angleX: 0
-  _angleY: 0
 --- !u!4 &1644267266
 Transform:
   m_ObjectHideFlags: 0
@@ -2336,15 +2321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45510800cfdbf3e4294cb986c09aa442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  _pathAsset: {fileID: 4900000, guid: b258ca94cdd72c845a6077f02a294f05, type: 3}
+  pathAsset: {fileID: 4900000, guid: b258ca94cdd72c845a6077f02a294f05, type: 3}
   _pathPoints: []
   _slider: {fileID: 653848854}
   _moveSpeed: 1
   _trailRenderer: {fileID: 1611572539}
-  _isMove: 0
-  _pointNumber: 0
-  _clickCounter: 0
 --- !u!1 &2026112701
 GameObject:
   m_ObjectHideFlags: 0

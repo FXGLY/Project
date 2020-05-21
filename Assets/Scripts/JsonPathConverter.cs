@@ -1,6 +1,5 @@
-﻿using System;
-using UnityEngine;
-[System.Serializable]
+﻿using UnityEngine;
+
 public class JsonPathConverter
 {
     public float[] x;

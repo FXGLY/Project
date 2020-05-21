@@ -1,33 +1,62 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 
 public class Ball : MonoBehaviour
 {
-    [HideInInspector] [SerializeField] private FollowCamera Camera;
+    private FollowCamera Camera;
 
     [Header("Path")]
-    [SerializeField] public TextAsset _pathAsset;
-    [SerializeField] private Vector3[] _pathPoints;
+    public TextAsset pathAsset;
+    [SerializeField]
+    private Vector3[] _pathPoints;
 
     [Header("UI")]
-    [SerializeField] private Slider _slider;
+    [SerializeField]
+    private Slider _slider;
 
     [Header("Properties")]
-    [SerializeField] private float _moveSpeed = 1f;
-    [SerializeField] private TrailRenderer _trailRenderer;
-    [HideInInspector] [SerializeField] private bool _isMove = false;
-    [HideInInspector] [SerializeField] private int _pointNumber = 0;
-    [HideInInspector] [SerializeField] private int _clickCounter;
+    [SerializeField]
+    private float _moveSpeed = 1f;
+    [SerializeField]
+    private TrailRenderer _trailRenderer;
+    private bool _isMove = false;
+    private int _pointNumber = 0;
+    private int _clickCounter;
 
+    private IEnumerator DoubleClickEvent()
+    {
+        yield return new WaitForSeconds(.3f);
+
+        if (_clickCounter > 1 && Camera.target == transform)
+        {
+            _isMove = false;
+            _pointNumber = 0;
+            transform.position = _pathPoints[0];
+            _trailRenderer.Clear();
+        }
+        else
+        {
+            if (!_isMove)
+            {
+                _isMove = true;
+            }
+            else
+            {
+                _isMove = false;
+            }
+        }
+
+        yield return new WaitForSeconds(.05f);
+        _clickCounter = 0;
+    }
 
     private void Awake()
     {
-        if (_pathAsset != null)
+        if (pathAsset != null)
         {
-            _pathPoints = JsonConvert.DeserializeObject<JsonPathConverter>(_pathAsset.text).Points;
+            _pathPoints = JsonConvert.DeserializeObject<JsonPathConverter>(pathAsset.text).Points;
             transform.position = _pathPoints[0];
         }
         Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowCamera>();
@@ -35,7 +64,7 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        if (Camera._target != transform || transform.position == _pathPoints[_pathPoints.Length - 1])
+        if (Camera.target != transform || transform.position == _pathPoints[_pathPoints.Length - 1])
         {
             _isMove = false;
         }
@@ -45,7 +74,7 @@ public class Ball : MonoBehaviour
             BallMovement();
         }
 
-        if(Camera._target == transform && !_isMove)
+        if(Camera.target == transform && !_isMove)
         {
            _slider.gameObject.SetActive(false);
         }   
@@ -71,32 +100,5 @@ public class Ball : MonoBehaviour
         {
             _pointNumber++;
         }
-    }
-
-    IEnumerator DoubleClickEvent()
-    {
-        yield return new WaitForSeconds(.3f);
-
-        if (_clickCounter > 1 && Camera._target == transform)
-        {
-            _isMove = false;
-            _pointNumber = 0;
-            transform.position = _pathPoints[0];
-            _trailRenderer.Clear();
-        }
-        else
-        {
-            if (!_isMove)
-            {
-                _isMove = true;
-            }
-            else
-            {
-                _isMove = false;
-            }
-        }
-
-        yield return new WaitForSeconds(.05f);
-        _clickCounter = 0;
     }
 }
