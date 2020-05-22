@@ -25,7 +25,7 @@ public class Ball : MonoBehaviour
     private int _pointNumber = 0;
     private int _clickCounter;
 
-    private IEnumerator DoubleClickEvent()
+    private IEnumerator OnDoubleClick()
     {
         yield return new WaitForSeconds(.3f);
 
@@ -50,6 +50,16 @@ public class Ball : MonoBehaviour
 
         yield return new WaitForSeconds(.05f);
         _clickCounter = 0;
+    }
+
+    private void OnMouseDown()
+    {
+        _clickCounter++;
+
+        if (_clickCounter == 1)
+        {
+            StartCoroutine("OnDoubleClick");
+        }
     }
 
     private void Awake()
@@ -81,15 +91,7 @@ public class Ball : MonoBehaviour
         }   
     }
 
-    private void OnMouseDown()
-    {
-        _clickCounter++;
 
-        if (_clickCounter == 1)
-        {
-            StartCoroutine("DoubleClickEvent");
-        }
-    }
 
     private void BallMovement()
     {
