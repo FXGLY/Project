@@ -25,43 +25,6 @@ public class Ball : MonoBehaviour
     private int _pointNumber = 0;
     private int _clickCounter;
 
-    private IEnumerator OnDoubleClick()
-    {
-        yield return new WaitForSeconds(.3f);
-
-        if (_clickCounter > 1 && _camera.target == transform)
-        {
-            _isMove = false;
-            _pointNumber = 0;
-            transform.position = _pathPoints[0];
-            _trailRenderer.Clear();
-        }
-        else
-        {
-            if (!_isMove)
-            {
-                _isMove = true;
-            }
-            else
-            {
-                _isMove = false;
-            }
-        }
-
-        yield return new WaitForSeconds(.05f);
-        _clickCounter = 0;
-    }
-
-    private void OnMouseDown()
-    {
-        _clickCounter++;
-
-        if (_clickCounter == 1)
-        {
-            StartCoroutine("OnDoubleClick");
-        }
-    }
-
     private void Awake()
     {
         if (pathAsset != null)
@@ -91,7 +54,42 @@ public class Ball : MonoBehaviour
         }   
     }
 
+    private void OnMouseDown()
+    {
+        _clickCounter++;
 
+        if (_clickCounter == 1)
+        {
+            StartCoroutine("OnDoubleClick");
+        }
+    }
+
+    private IEnumerator OnDoubleClick()
+    {
+        yield return new WaitForSeconds(.3f);
+
+        if (_clickCounter > 1 && _camera.target == transform)
+        {
+            _isMove = false;
+            _pointNumber = 0;
+            transform.position = _pathPoints[0];
+            _trailRenderer.Clear();
+        }
+        else
+        {
+            if (!_isMove)
+            {
+                _isMove = true;
+            }
+            else
+            {
+                _isMove = false;
+            }
+        }
+
+        yield return new WaitForSeconds(.05f);
+        _clickCounter = 0;
+    }
 
     private void BallMovement()
     {
