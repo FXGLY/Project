@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 public class Ball : MonoBehaviour
 {
-    private FollowCamera Camera;
+    private FollowCamera _camera;
 
     [Header("Path")]
     public TextAsset pathAsset;
@@ -29,7 +29,7 @@ public class Ball : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
 
-        if (_clickCounter > 1 && Camera.target == transform)
+        if (_clickCounter > 1 && _camera.target == transform)
         {
             _isMove = false;
             _pointNumber = 0;
@@ -59,12 +59,13 @@ public class Ball : MonoBehaviour
             _pathPoints = JsonConvert.DeserializeObject<JsonPathConverter>(pathAsset.text).Points;
             transform.position = _pathPoints[0];
         }
-        Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowCamera>();
+
+        _camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowCamera>();
     }
 
     private void Update()
     {
-        if (Camera.target != transform || transform.position == _pathPoints[_pathPoints.Length - 1])
+        if (_camera.target != transform || transform.position == _pathPoints[_pathPoints.Length - 1])
         {
             _isMove = false;
         }
@@ -74,7 +75,7 @@ public class Ball : MonoBehaviour
             BallMovement();
         }
 
-        if(Camera.target == transform && !_isMove)
+        if(_camera.target == transform && !_isMove)
         {
            _slider.gameObject.SetActive(false);
         }   

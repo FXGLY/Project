@@ -57,13 +57,9 @@ public class FollowCamera : MonoBehaviour
 
     private void HandleCameraRotation()
     {
-        var x = Input.GetAxis("Mouse X");
-        var y = Input.GetAxis("Mouse Y");
-
-        _angleX = transform.localEulerAngles.y + x * _turnSpeed;
-        _angleY += y * _turnSpeed;
+        _angleX += Input.GetAxis("Mouse X") * _turnSpeed;
+        _angleY += Input.GetAxis("Mouse Y") * _turnSpeed;
         _angleY = Mathf.Clamp(_angleY, -90, 90);
-
         transform.localEulerAngles = new Vector3(-_angleY, _angleX, 0);
     }
 }
